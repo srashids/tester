@@ -1,9 +1,29 @@
 pipeline {
-    agent { docker 'maven:3.3.3' }
+    agent any
+    node {
+    checkout scm 
+    /* .. snip .. */
+    }
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                sh 'mvn --version'
+                echo 'Building..'
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
+            steps {
+                echo 'Deploying....'
+                echo "Roses are red, violets are blue...."
             }
         }
     }
