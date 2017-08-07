@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh('build.sh')
+                sh('foo.sh')
             }
         }
         stage('Deploy') {
