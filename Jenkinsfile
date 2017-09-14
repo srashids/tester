@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                echo '${params.EXAMPLE_TEXT}'
+                echo "${params.EXAMPLE_TEXT}"
             }
         }
         stage('Test') {
