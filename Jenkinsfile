@@ -1,4 +1,4 @@
-pipeline {
+node{
     agent any
        parameters {
        string(name: 'EXAMPLE_TEXT', defaultValue: '', description: 'Example Text for Parameterization')
