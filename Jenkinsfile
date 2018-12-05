@@ -24,7 +24,7 @@ pipeline {
             }
         }
 	stage ('Triggering Downstream Jobs') {
-            if ("$env.TRIGGER_DOWNSTREAM_JOB".toBoolean() && "$currentBuild.result" == 'SUCCESS') {
+            if ("$env.TRIGGER_DOWNSTREAM_JOB".toBoolean()) {
                 echo "Triggering ddoc-poker-test job..."
                 exec_downstream()
             } else {
