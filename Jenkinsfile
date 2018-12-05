@@ -23,7 +23,7 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-	stage ('Triggering Downstream Jobs') {
+	parallel stage ('Triggering Downstream Jobs') {
             if ("$env.TRIGGER_DOWNSTREAM_JOB".toBoolean()) {
                 echo "Triggering ddoc-poker-test job..."
                 exec_downstream()
