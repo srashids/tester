@@ -5,7 +5,6 @@ pipeline {
        string(name: 'SCRIPT_ARGS', defaultValue: '', description: 'Script Args')
    }
 
-    stages {
         stage('Build') {
             steps {
                 echo 'Building..'
@@ -23,7 +22,7 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-	parallel stage ('Triggering Downstream Jobs') {
+	stage ('Triggering Downstream Jobs') {
             if ("$env.TRIGGER_DOWNSTREAM_JOB".toBoolean()) {
                 echo "Triggering ddoc-poker-test job..."
                 exec_downstream()
@@ -31,7 +30,6 @@ pipeline {
                 echo "Not triggering downstream jobs."
             }
         }
-    }
 }
 
 def exec_downstream(){
