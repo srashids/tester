@@ -2,6 +2,7 @@ pipeline {
     agent any
        parameters {
        string(name: 'EXAMPLE_TEXT', defaultValue: '', description: 'Example Text for Parameterization')
+       string(name: 'SCRIPT_ARGS', defaultValue: '', description: 'Script Args')
    }
 
     stages {
@@ -22,5 +23,22 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+	stage ('Triggering Downstream Jobs') {
+            if ("$env.TRIGGER_DOWNSTREAM_JOB".toBoolean() && "$currentBuild.result" == 'SUCCESS') {
+                echo "Triggering ddoc-poker-test job..."
+                exec_downstream()
+            } else {
+                echo "Not triggering downstream jobs."
+            }
+        }
     }
+}
+
+def exec_downstream(){
+	build job:
+        'Pipeline-2',
+        parameters: [
+            [$class: 'StringParameterValue', name: 'SCRIPT_ARGS', value: "${env.SCRIPT_ARGS}"],
+        ],
+        wait: false
 }
