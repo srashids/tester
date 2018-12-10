@@ -21,9 +21,9 @@ pipeline {
             steps {
                 echo 'Deploying....'
             }
-        }
-    }
-	stage('Trigger Downstream'){
-		echo 'Triggering Downstream Job.....'
 	}
+	stage('Trigger Downstream'){
+		echo 'Triggering Downstream...'	
+	}
+    }
 }
