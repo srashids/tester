@@ -32,10 +32,6 @@ pipeline {
 }
 
 def exec_downstream(){
-	    build job:
-        'Pipeline-2',
-        parameters: [
-            [$class: 'StringParameterValue', name: 'EXAMPLE_TEXT', value: ""],
-        wait: false
-	]
+	build job: 'Pipeline-2', parameters: [string(name: 'EXAMPLE_TEXT', value: '')]
 }
+
