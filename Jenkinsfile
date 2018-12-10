@@ -37,4 +37,5 @@ def exec_downstream(){
         parameters: [
             [$class: 'StringParameterValue', name: 'EXAMPLE_TEXT', value: ""],
         wait: false
+	]
 }
