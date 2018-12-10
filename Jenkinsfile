@@ -23,4 +23,7 @@ pipeline {
             }
         }
     }
+	stage('Trigger Downstream'){
+		echo 'Triggering Downstream Job.....'
+	}
 }
