@@ -25,7 +25,16 @@ pipeline {
 	stage('Trigger Downstream'){
 	    steps{
 	   	echo 'Trigger Downstream job....'
+		exec_downstream()
 	    }	
 	}
     }
+}
+
+def exec_downstream(){
+	    build job:
+        'Pipeline-2',
+        parameters: [
+            [$class: 'StringParameterValue', name: 'EXAMPLE_TEXT', value: ""],
+        wait: false
 }
