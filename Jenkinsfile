@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-		echo '$BUILD_URL'
+		echo 'env.BUILD_URL'
                 echo "${params.EXAMPLE_TEXT}"
             }
         }
