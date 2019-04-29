@@ -4,11 +4,11 @@ pipeline {
        string(name: 'EXAMPLE_TEXT', defaultValue: '', description: 'Example Text for Parameterization')
    }
 
+    echo env.BUILD_URL
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
-		echo  env.BUILD_URL
                 echo "${params.EXAMPLE_TEXT}"
             }
         }
