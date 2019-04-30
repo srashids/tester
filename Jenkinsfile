@@ -10,14 +10,14 @@ pipeline {
             steps {
                 echo 'Building..'
                 echo "${params.EXAMPLE_TEXT}"
+                echo env.BUILD_URL
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
                 sh './foo.sh'
-            }
-            env.BUILD_URL
+            } 
         }
         stage('Deploy') {
             steps {
