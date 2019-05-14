@@ -20,6 +20,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh './foo.sh'
+		echo 'Testing Complete'
             } 
         }
         stage('Deploy') {
