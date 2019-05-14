@@ -12,7 +12,8 @@ pipeline {
                 echo "${params.EXAMPLE_TEXT}"
                 echo env.BUILD_URL
 		echo 'Printing Commit Sha'
-		sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+		checkout scm
+		echo "Commit Sha: " + sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
             }
         }
         stage('Test') {
