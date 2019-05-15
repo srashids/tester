@@ -15,13 +15,7 @@ pipeline {
 		checkout scm
 		echo "Commit Sha: " + sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
 		echo "Message: " + search_commit_msg("sand")
-		if(search_commit_msg("sand").contains("sand")){
-		    echo "We good"
-		}
-
-		if(search_commit_msg("sand").contains("dans")){
-                    echo "We NOT good"
-                }
+		
             }
 
         }
@@ -47,7 +41,14 @@ pipeline {
 }
 
 def search_commit_msg(String msg) {
-    return sh(returnStdout: true, script: "git log --oneline -1 -i --grep=${msg}").trim()
+    def m = sh(returnStdout: true, script: "git log --oneline -1 -i --grep=${msg}").trim()
+    if(m.contains("sand")){
+    	echo "We GOOD"
+    }
+    if(m.contains("dans")){
+    	echo "We NOT GOOD"
+    }
+    return m
 }
 
 def exec_downstream(){
