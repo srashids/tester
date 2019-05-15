@@ -14,7 +14,7 @@ pipeline {
 		echo 'Printing Commit Sha'
 		checkout scm
 		echo "Commit Sha: " + sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-		echo "Message: " + sh(returnStdout: true, script: "git log --oneline  grep=sande").trim()
+		echo "Message: " + sh(returnStdout: true, script: "git log --oneline -i --grep=sand").trim()
             }
 
         }
