@@ -20,7 +20,7 @@ pipeline {
 		}
 
 		if(search_commit_msg("sand").contains("dans")){
-                    echo "We NOT good""
+                    echo "We NOT good"
                 }
             }
 
