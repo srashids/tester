@@ -43,12 +43,9 @@ pipeline {
 def search_commit_msg(String msg) {
     def m = sh(returnStdout: true, script: "git log --oneline -1 -i --grep=${msg}").trim()
     if(m.contains("sand")){
-    	echo "We GOOD"
+    	return true
     }
-    if(m.contains("dans")){
-    	echo "We NOT GOOD"
-    }
-    return m
+    return false
 }
 
 def exec_downstream(){
