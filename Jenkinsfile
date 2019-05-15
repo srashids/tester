@@ -15,6 +15,13 @@ pipeline {
 		checkout scm
 		echo "Commit Sha: " + sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
 		echo "Message: " + search_commit_msg("sand")
+		if(search_commit_msg("sand").contains("sand")){
+		    echo "We good"
+		}
+
+		if(search_commit_msg("sand").contains("dans")){
+                    echo "We NOT good""
+                }
             }
 
         }
