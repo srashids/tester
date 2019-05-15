@@ -14,7 +14,7 @@ pipeline {
 		echo 'Printing Commit Sha'
 		checkout scm
 		echo "Commit Sha: " + sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-		echo "Message: " + sh(returnStdout: true, script: "git log --oneline -1 -i --grep=sand").trim()
+		echo "Message: " + search_commit_msg("sand")
             }
 
         }
@@ -37,6 +37,10 @@ pipeline {
 	    }	
 	}
     }
+}
+
+def search_commit_msg(String msg) {
+    return sh(returnStdout: true, script: "git log --oneline -1 -i --grep=${msg}").trim()
 }
 
 def exec_downstream(){
